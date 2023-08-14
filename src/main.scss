@@ -5,19 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  text-align: center;
   background-color: #017D80;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: #222;
 }
 
 * {
   box-sizing: border-box;
+}
+
+main {
+  margin: 0 1rem;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  place-content: center;
+  place-items: center;
+  gap: 1rem;
 }

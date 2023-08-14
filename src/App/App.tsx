@@ -1,22 +1,18 @@
-import "./App.scss";
+import "../main.scss";
+import Footer from "./components/Footer/Footer";
+import Server from "./components/Server/Server";
 
 const App: React.FC = () => {
   return (
-    <main className="container">
-      <div className="window">
-        <div className="title-bar">
-          <div className="title-bar-text">Innovid challenge</div>
-          <div className="title-bar-controls">
-            <button aria-label="Minimize" />
-            <button aria-label="Maximize" />
-            <button aria-label="Close" />
-          </div>
-        </div>
-        <div className="window-body">
-          <p>Hello world</p>
-        </div>
-      </div>
-    </main>
+    <>
+      <main>
+        <Server windowTitle="Server #1" />
+        <Server windowTitle="Server #2" />
+        <Server windowTitle="Server #3" />
+        <Server windowTitle="Server #4" />
+      </main>
+      <Footer />
+    </>
   );
 };
 
