@@ -6,9 +6,12 @@ import { useState } from "react";
 function Server({ windowTitle }: { windowTitle: string }): JSX.Element {
   const [serverState, setServerState] = useState(false);
 
-  return (
-    <div className="window">
+  function getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+  }
 
+  return (
+    <article className="window">
       <div className="title-bar">
         <div className="title-bar-text">{windowTitle}</div>
       </div>
@@ -21,12 +24,17 @@ function Server({ windowTitle }: { windowTitle: string }): JSX.Element {
       </div>
 
       <div className="status-bar">
-        <p className="status-bar-field">{serverState ? "Status: ON" : "Status: OFF"}</p>
-        <p className="status-bar-field">{serverState ? "Shut down" : "Turn on"}</p>
-        <p className="status-bar-field">CPU Usage: 14%</p>
+        <p className="status-bar-field">
+          {serverState ? "Status: ON" : "Status: OFF"}
+        </p>
+        <p className="status-bar-field" onClick={() => setServerState(!serverState)}>
+          {serverState ? "Shut down" : "Turn on"}
+        </p>
+        <p className="status-bar-field">
+          {serverState ? `CPU Usage: ${getRandomInt(100)}%` : "CPU Usage: 0%" }
+        </p>
       </div>
-
-    </div>
+    </article>
   );
 }
 
