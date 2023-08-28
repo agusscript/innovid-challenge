@@ -1,14 +1,27 @@
 import "./Server.scss";
 import PcOff from "../../../assets/pc-off.png";
 import PcOn from "../../../assets/pc-on.gif";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Server({ windowTitle }: { windowTitle: string }): JSX.Element {
   const [serverState, setServerState] = useState(false);
+  const [usageCpuSate, setUsageCpuSate] = useState(0);
 
   function getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
   }
+
+  useEffect(() => {
+    let interval: number;
+
+    if (serverState) {
+      interval = setInterval(() => {
+        setUsageCpuSate(getRandomInt(100));
+      }, 4000);
+    }
+
+    return () => clearInterval(interval);
+  }, [serverState]);
 
   return (
     <article className="window">
@@ -24,15 +37,11 @@ function Server({ windowTitle }: { windowTitle: string }): JSX.Element {
       </div>
 
       <div className="status-bar">
-        <p className="status-bar-field">
-          {serverState ? "Status: ON" : "Status: OFF"}
-        </p>
+        <p className="status-bar-field">{serverState ? "Status: ON" : "Status: OFF"}</p>
         <p className="status-bar-field" onClick={() => setServerState(!serverState)}>
           {serverState ? "Shut down" : "Turn on"}
         </p>
-        <p className="status-bar-field">
-          {serverState ? `CPU Usage: ${getRandomInt(100)}%` : "CPU Usage: 0%" }
-        </p>
+        <p className="status-bar-field">{`CPU Usage: ${serverState ? usageCpuSate : 0}%`}</p>
       </div>
     </article>
   );
